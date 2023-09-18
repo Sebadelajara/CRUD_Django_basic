@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div id='form' class=' d-flex justify-content-center pt-4 mt-4'>
+
+    <form action="/formadd/" method="post" class='w-50'>
+        {% csrf_token %}
+        <label for="modelo">Nombre:</label>
+        <input type="text" name="nombre" class='form-control mb-3'>
+
+        <label for="">Ciudad:</label>
+        <input type="text" name="ciudad" class='form-control mb-3'>
+
+        <label for="">Pais:</label>
+        <input type="text" name="pais" class='form-control mb-3'>
+
+
+
+        <button type="submit" class="btn btn-primary">enviar</button>
+
+    </form>
+</div>
+
+
+<div id='form' class=' d-flex justify-content-center pt-4 mt-4'>
+    <table class="table w-50">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Ciudad</th>
+                <th scope="col">Pais</th>
+                <th colspan="2">Opciones</th>
+
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            {% for i in laboratorio %}
+            <tr>
+                
+                <td>{{ i.nombre}}</td>
+                <td>{{ i.ciudad }}</td>
+                <td>{{ i.pais }}</td>
+                <th><a href="editar/{{i.id}}" class="btn btn-info">Editar</a></th>
+                <th><a href="#exampleModal{{ i.id }}"  class="btn btn-danger" data-bs-toggle="modal">Eliminar</a></th>
+
+
+            </tr>
+
+            <div class="modal fade" id="exampleModal{{ i.id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ i.id }}" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel{{ i.id }}">Eliminar registro</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Esta seguro que desea eliminar este registro?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO!</button>
+                      <a  href="eliminar/{{i.id}}" class="btn btn-danger">Eliminar</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+            {% endfor %}
+    </table>
+
+</div>
+
+{% endblock %}

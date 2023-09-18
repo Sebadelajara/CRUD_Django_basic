@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div id='form' class=' d-flex justify-content-center pt-4 mt-4'>
+
+    <form action="/editarlab/" method="post" class='w-50'>
+        {% csrf_token %}
+        <input type="hidden"  name="id" value="{{laboratorio.id}}">
+        <label for="modelo">Nombre:</label>
+        <input type="text" name="nombre" value="{{laboratorio.nombre}}" class='form-control mb-3'>
+
+        <label for="">Ciudad:</label>
+        <input type="text" name="ciudad" value="{{laboratorio.ciudad}}" class='form-control mb-3'>
+
+        <label for="">Pais:</label>
+        <input type="text" name="pais" value="{{laboratorio.pais}}" class='form-control mb-3'>
+
+
+
+        <button type="submit" class="btn btn-primary">enviar</button>
+
+    </form>
+</div>
+
+
+
+
+{% endblock %}
